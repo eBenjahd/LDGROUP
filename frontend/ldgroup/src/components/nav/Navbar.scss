@@ -1,0 +1,12 @@
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 1rem;
+
+    div.icons{
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
