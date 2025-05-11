@@ -2,7 +2,7 @@
 import './CartIcon.scss'
 
 // Context
-import { useCart } from '../../../context/CartContext'
+import { useCart } from '../context/CartContext'
 
 function CartIcon({ width = 17, height = 17, color = "black"}) {
 

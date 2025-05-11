@@ -9,6 +9,7 @@ function Products({URL,title}) {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const imageUrl = 'http://localhost:8000';
 
     useEffect(() =>{
         const fetchProducts = async () => {
@@ -43,11 +44,18 @@ function Products({URL,title}) {
 
                 product.is_active &&
                 <article className='product-cart' key={product.id}>
-                    <h2>{product.name}</h2>
-                    <p>{product.description}</p>
-                    <p>S/. {product.price}</p>
 
-                    <Button product = {{ id: product.id, name: product.name, price: product.price }}/>
+                    {product.image ? <img src={`${imageUrl}${product.image}`} alt={product.name} /> : <p>No hay imagen</p>}
+                    <h2>{product.name}</h2>
+                    <p className='price'>S/.{product.price}</p>
+
+                    <Button product = {{ 
+                        id: product.id, 
+                        name: product.name, 
+                        price: product.price, 
+                        image: product.image ? `${imageUrl}${product.image}` : null,
+                    }}
+                    />
                 </article>
 
             ))}

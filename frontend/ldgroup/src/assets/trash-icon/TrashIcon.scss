@@ -1,0 +1,10 @@
+.trash-icon {
+    stroke: #000;
+    transition: transform 0.3s ease, stroke 0.3s ease;
+  
+    &:hover {
+      stroke: #e63946; // rojo elegante al hacer hover
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+  }
