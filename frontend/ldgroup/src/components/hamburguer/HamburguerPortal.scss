@@ -1,0 +1,64 @@
+.hamburguer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(255, 255, 255); 
+  z-index: 9999;
+  overflow: hidden;
+  
+  display: flex;
+  flex-direction: column;
+
+  transform: translateX(-100%); 
+  transition: transform 0.3s ease; 
+
+  &.active {
+    transform: translateX(0); 
+  }
+
+  ul.cross {
+    list-style: none;
+    width: 40%;
+    padding: 0;
+    margin: 1rem 2rem;
+    display: flex ;
+    flex-direction: column;
+    box-sizing: border-box;
+  
+    li {
+      width: 100%;
+      border-bottom: 1px dashed #515151;
+    }
+  
+    a {
+      text-align: left;
+    }
+  }
+
+  button {
+    width: 100%;
+    color: #515151;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row-reverse;
+    margin-top: 20px;
+
+    span {
+      font-size: 15px;
+      color: #515151;
+      display: flex;
+      justify-content: center;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+
+    span:nth-child(2) {
+      font-size: 14px;
+      font-weight: 500;
+      color: #515151;
+    }
+  }
+}

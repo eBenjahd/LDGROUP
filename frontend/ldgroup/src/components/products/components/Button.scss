@@ -1,0 +1,64 @@
+@use '../../../styles/mixins' as *;
+
+.button-handler {
+    box-sizing: border-box;
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    gap: 3px;
+    font-size: 14px;
+    cursor: pointer;
+
+    span.add-product {
+        display: flex;
+        align-self: center;
+        background-color: rgb(0, 0, 0);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 8px;
+        font-size: 12px;
+        cursor: pointer;
+        text-align: center;
+
+        &:hover {
+            background-color: rgb(69, 66, 66);
+            color: rgb(255, 255, 255);
+            transition: 0.2s;
+        }
+    }
+
+    div.adder{
+        width: 3.7em;
+        box-sizing: border-box;
+        text-align: center;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-radius: 8px;
+        border: 1px solid rgb(0, 0, 0);
+
+        span.handler {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 4%;
+            color: rgb(0, 0, 0);
+        }
+    }
+
+    @include breakpoint(smallmobile){
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: end;
+
+
+        div.adder{
+            width: 100%;
+        } 
+    }
+
+    @include breakpoint(mobile){
+        flex-direction: row-reverse;
+    }
+
+}
