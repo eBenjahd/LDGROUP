@@ -1,46 +1,39 @@
-import { useCart } from '../context/CartContext'
 import { useState, useEffect } from 'react';
 import { getInventory } from '../utils/getInventory';
 
-function useInventory() {
-  const { cartItems } = useCart();
+function useInventory(products) {
   const [inventory, setInventory] = useState({});
 
   useEffect(() => {
+    if (!products || products.length === 0) return;
+
     let isMounted = true;
 
-    async function fetchInventory() {
-      // Filtramos productos que no están en el inventario todavía
-      const itemsToFetch = cartItems.filter(item => !(item.id in inventory));
-
-      if (itemsToFetch.length === 0) return;
-
+    const fetchInventory = async () => {
       try {
         const results = await Promise.all(
-          itemsToFetch.map(async (item) => {
-            const qty = await getInventory(item.id);
-            return { id: item.id, qty };
+          products.map(async (product) => {
+            const qty = await getInventory(product.id);
+            return { id: product.id, qty };
           })
         );
 
         if (isMounted) {
-          const newInventory = results.reduce((acc, curr) => {
-            acc[curr.id] = curr.qty;
+          const newInventory = results.reduce((acc, { id, qty }) => {
+            acc[id] = qty;
             return acc;
           }, {});
-          setInventory(prev => ({ ...prev, ...newInventory }));
+          setInventory(newInventory);
         }
       } catch (error) {
         console.error('Error fetching inventory:', error);
       }
-    }
+    };
 
     fetchInventory();
 
-    return () => {
-      isMounted = false;
-    };
-  }, [cartItems, inventory]);
+    return () => { isMounted = false; };
+  }, [products]);
 
   return inventory;
 }

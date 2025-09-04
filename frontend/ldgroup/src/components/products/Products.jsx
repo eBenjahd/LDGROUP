@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import { useState, useEffect } from 'react';
+import useInventory from '../../hooks/useInventory';
 
 import './Products.scss'
 import Button from './components/Button';
@@ -27,7 +28,7 @@ function Products({URL,title}) {
         fetchProducts()
     },[])
 
-    
+    const inventory = useInventory(products);
 
     return (
 
@@ -49,12 +50,9 @@ function Products({URL,title}) {
                     <h2>{product.name}</h2>
                     <p className='price'>S/.{product.price}</p>
 
-                    <Button product = {{ 
-                        id: product.id, 
-                        name: product.name, 
-                        price: product.price, 
-                        image: product.image ? `${imageUrl}${product.image}` : null,
-                    }}
+                    <Button  inventory={inventory} product = {{
+                        ...product,
+                        image: product.image ? `${imageUrl}${product.image}` : null}}  
                     />
                 </article>
 
