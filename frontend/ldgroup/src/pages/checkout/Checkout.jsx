@@ -3,8 +3,6 @@ import { z } from "zod"
 import axios from "axios"
 import { getCSRFToken } from "../../utils/getToken"
 import MyForm from "../../components/form/MyForm"
-// import './Checkout.scss'
-import Home from "../home/Home"
 import { Link } from "react-router-dom"
 
 function Checkout() {

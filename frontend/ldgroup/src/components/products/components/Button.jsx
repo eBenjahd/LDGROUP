@@ -2,12 +2,22 @@ import { useState } from "react";
 import { useCart } from "../../../context/CartContext";  
 import './Button.scss';
 import BagIcon from "../../../assets/BagIcon";
+import useInventory from "../../../hooks/useInventory";
+
 
 function Button({ product }) {
   const { addToCart } = useCart(); 
   const [quantity, setQuantity] = useState(0);
+  const inventory = useInventory()
 
-  const add = () => setQuantity(prev => prev + 1);
+  const add = () => {
+    const available = inventory[product.id] ?? Infinity; // si no cargó inventario, dejamos infinito
+    if (quantity < available) {
+      setQuantity(prev => prev + 1);
+    } else {
+      alert(`Solo hay ${available} unidades disponibles`);
+    }
+  };
   const remove = () => {
     if (quantity > 0) setQuantity(prev => prev - 1);
   };

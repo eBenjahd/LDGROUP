@@ -5,8 +5,8 @@ import { createPortal } from 'react-dom'
 import { useCart } from '../../context/CartContext'
 import { Link } from 'react-router-dom'
 
-import CloseButton from '../../assets/close-button/CloseButton'
-import TrashIcon from '../../assets/trash-icon/TrashIcon'
+import CloseButton from '../close-button/CloseButton'
+import TrashIcon from '../trash-icon/TrashIcon'
 
 function CartPortal({onClose}) {
     
