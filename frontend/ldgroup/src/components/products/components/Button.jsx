@@ -34,7 +34,7 @@ function Button({ product, inventory }) {
       image: product.image,
     }; 
 
-    addToCart(data, quantity);
+    addToCart(data, quantity, available);
     setQuantity(0); // reseteamos el contador después de agregar
   };
 

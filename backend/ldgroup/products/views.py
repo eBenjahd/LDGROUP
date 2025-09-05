@@ -57,11 +57,15 @@ def update_inventory(request, pk):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
-def get_inventory(request, pk):
+def get_inventory(request):
+    product_id = request.GET.get('product')  # <--- buscamos por id de producto
+    if not product_id:
+        return Response({"error": "Falta el parámetro product"}, status=status.HTTP_400_BAD_REQUEST)
+
     try:
-        inventory = Inventory.objects.get(pk=pk)
+        inventory = Inventory.objects.get(product_id=product_id)
     except Inventory.DoesNotExist:
-        return Response({"error": "Inventario no encontrado"}, status=status.HTTP_404_NOT_FOUND)
+        return Response({"quantity": 0, "product": product_id})  # devolver 0 si no hay inventario
 
     serializer = InventorySerializer(inventory)
     return Response(serializer.data)

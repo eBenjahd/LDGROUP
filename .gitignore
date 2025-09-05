@@ -96,4 +96,6 @@ dist-ssr
 *.sln
 *.sw?
 
+media/*
+
 node_modules
