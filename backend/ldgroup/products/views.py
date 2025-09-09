@@ -6,6 +6,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.core.exceptions import ValidationError
+from django.middleware.csrf import get_token
+from django.http import JsonResponse
 
 # MODELS
 from .models import Product
@@ -99,3 +101,14 @@ def create_order(request):
     
     # Si el serializer no es válido
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET']) #This will work in production, not neccesary in dev mode
+def get_csrf_token(request):
+    try:
+        token = get_token(request)
+        return JsonResponse({"csrfToken": token})
+    except Exception as e:
+        return JsonResponse(
+            {"error": "Unable to generate CSRF token", "details": str(e)},
+            status=500
+        )

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ProductList, ProductDetail, update_inventory, get_inventory, update_order_item, create_order  # Ya no es necesario importar views
+from .views import ProductList, ProductDetail, update_inventory, get_inventory, update_order_item, create_order, get_csrf_token  # Ya no es necesario importar views
 
 urlpatterns = [
     path('', ProductList.as_view(), name='product-list'),  # Acceso a todos los productos
@@ -8,6 +8,5 @@ urlpatterns = [
     path('inventory/<int:pk>/update/',update_inventory, name='update-inventory'),  
     path('order-items/<int:pk>/update/', update_order_item, name='update-order-item'),  # Actualizar un OrderItem específico
     path('orders/create/', create_order, name='create-order'),
-
-
+    path('get-csrf-token/', get_csrf_token, name='get-csrf-token')
 ]
