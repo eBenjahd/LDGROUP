@@ -12,10 +12,6 @@ function CartPortal({onClose}) {
     
     const {cartItems, eraseItem, handleBuy} = useCart()
 
-
-
-
-
     const totalCartPrice = cartItems.reduce((acc,item) => acc + item.quantity * parseFloat(item.price), 0)
 
   return createPortal(

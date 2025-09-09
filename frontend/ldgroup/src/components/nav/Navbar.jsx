@@ -13,15 +13,19 @@ import { useState, useEffect } from 'react'
 import LDGroupLogo from './components/LdGroupLogo'
 import CartPortal from '../cart/CartPortal'
 import HamburguerPortal from '../hamburguer/HamburguerPortal'
+import SearchPortal from '../search/SearchPortal'
 
 
 function Navbar() {
 
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const openSearch = () => setIsSearchOpen(true);
+  const closeSearch = () => setIsSearchOpen(false);
 
   const openCart = () => {
-    console.log('Abriendo carrito...')
     setIsCartOpen(true)
   }
   const closeCart = () => {
@@ -30,31 +34,28 @@ function Navbar() {
 
   const openMenu = () => {
     if (!isMenuOpen) { 
-      console.log('Abriendo menu...')
       setIsMenuOpen(true)
     }
   }
 
   const closeMenu = () => {
     if (isMenuOpen) {  // Solo cerrar el menú si está abierto
-      console.log('Cerrando menu...');
       setIsMenuOpen(false);
     }
   }
 
 
   useEffect(() => {
-    if (isCartOpen) {
-      document.body.style.overflow = 'hidden';
+    // Bloquea scroll si hay algo abierto (carrito o búsqueda)
+    if (isCartOpen || isSearchOpen) {
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     }
-
-    // Limpieza del efecto cuando el componente se desmonte o el carrito se cierre
     return () => {
-      document.body.style.overflow = 'auto'; 
+      document.body.style.overflow = "auto";
     };
-  }, [isCartOpen]);
+  }, [isCartOpen, isSearchOpen]);
 
   return (
     <nav>
@@ -74,13 +75,19 @@ function Navbar() {
       
       <div className='icons'>
 
-        <SearchSvg />
+        <button onClick={openSearch}>
+          <SearchSvg />
+        </button>
+
 
         <div onClick={openCart}>
           <BagSvg itemQuantity={[]}/>
         </div>
 
         {isCartOpen && <CartPortal onClose={closeCart} />}
+        {isSearchOpen && (
+        <SearchPortal onClose={closeSearch} />
+      )}
       </div>
 
       

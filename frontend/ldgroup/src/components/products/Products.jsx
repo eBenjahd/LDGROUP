@@ -1,32 +1,13 @@
-import Axios from 'axios';
-import { useState, useEffect } from 'react';
 import useInventory from '../../hooks/useInventory';
+import { useProducts } from '../../context/ProductsContext';
 
 import './Products.scss'
 import Button from './components/Button';
 
 function Products({URL,title}) {
 
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const {products , loading , error } = useProducts()
     const imageUrl = 'http://localhost:8000';
-
-    useEffect(() =>{
-        const fetchProducts = async () => {
-            try {
-                const response = await Axios.get(URL)
-                setProducts(response.data);
-                setLoading(false);
-            }
-            catch (error){
-                setError(error);
-                setLoading(false);
-            }
-        }
-
-        fetchProducts()
-    },[])
 
     const inventory = useInventory(products);
 

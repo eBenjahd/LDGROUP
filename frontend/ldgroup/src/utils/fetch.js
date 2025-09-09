@@ -8,6 +8,6 @@ export async function fetchData(URL) {
         console.log(`Error: ${e}.`)
         throw e 
     } finally {
-        console.log('Request finished')
+        console.log(`Request finished desde fetchData ${URL}`)
     }
 }

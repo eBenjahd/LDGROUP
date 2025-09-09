@@ -1,0 +1,137 @@
+@use '../../styles/mixins' as *;
+
+.search-portal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(251, 251, 251);
+  z-index: 9999;
+  overflow: hidden;
+
+  .search-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    button {
+      width: 20%;
+    }
+  }
+
+  .scroll {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 10px 18px 10px 0px;
+    height: 100%;
+    overflow-y: auto;
+    scrollbar-width: auto;
+    border-top: 0.5px solid #979797;
+    border-bottom: 0.5px solid #979797;
+
+    .search-box {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      column-gap: 8px;
+
+      img {
+        width: 70px;
+        height: 70px;
+        object-fit: contain;
+        border-radius: 10px;
+      }
+
+      & > * {
+        width: 100%;
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .search-portal {
+    display: grid;
+    box-sizing: border-box;
+    grid-template-rows: auto 1fr auto;
+    padding: 10px 20px;
+    height: 100vh;
+
+    .empty-search {
+      align-self: center;
+      align-content: center;
+      height: 100%;
+      font-size: 1.5em;
+    }
+
+    .search-info {
+      display: flex;
+      flex-direction: column;
+      row-gap: 5px;
+
+      h4 {
+        margin: 0;
+        font-size: 1.2em;
+        font-weight: 600;
+      }
+
+      p {
+        margin: 0;
+        font-size: 0.9em;
+
+        &.price {
+          color: #979797;
+          font-size: 0.8em;
+        }
+      }
+    }
+
+    @include breakpoint(smallmobile) {
+      & {
+        overflow: auto;
+      }
+    }
+  }
+
+  .search-footer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+
+    h3 {
+      font-weight: 700;
+      color: #000000;
+      display: flex;
+      align-items: center;
+      column-gap: 15px;
+
+      & > span {
+        color: #a12121;
+        font-size: medium;
+      }
+    }
+
+    button {
+      width: 100%;
+      text-transform: capitalize;
+      background-color: black;
+      color: white;
+      padding: 14px;
+      font-size: large;
+      border-radius: 10px;
+      box-sizing: border-box;
+
+      &.search-btn {
+        margin-top: 25px;
+        margin-bottom: 15px;
+      }
+
+      &:hover {
+        background-color: #333333;
+        transform: 1s;
+      }
+    }
+  }
+}
