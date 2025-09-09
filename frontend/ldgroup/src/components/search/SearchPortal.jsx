@@ -1,6 +1,8 @@
 import ReactDOM from 'react-dom'
 import { useState } from 'react'
 import { useProducts } from '../../context/ProductsContext'
+import useInventory from '../../hooks/useInventory'
+import Button from '../products/components/Button'
 
 // Styles
 import './SearchPortal.scss'
@@ -8,6 +10,8 @@ import './SearchPortal.scss'
 function SearchPortal({ onClose }) {
   const [query, setQuery] = useState('')
   const { products, loading, error } = useProducts()
+  const inventory = useInventory(products)
+  const imageUrl = 'http://localhost:8000' 
 
   const filtered = products.filter((p) =>
     p.name.toLowerCase().includes(query.toLowerCase())
@@ -46,6 +50,10 @@ function SearchPortal({ onClose }) {
                 <div className="search-info">
                   <h4>{p.name}</h4>
                   <p className="price">S/.{p.price}</p>
+                  <Button  inventory={inventory} product = {{
+                        ...p,
+                        image: p.image ? `${imageUrl}${p.image}` : null}}  
+                    />
                 </div>
               </div>
             ))
