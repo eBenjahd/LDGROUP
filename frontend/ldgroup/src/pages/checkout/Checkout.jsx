@@ -5,6 +5,9 @@ import { getCSRFToken } from "../../utils/getToken"
 import MyForm from "../../components/form/MyForm"
 import { Link } from "react-router-dom"
 
+// styles
+import './Checkout.scss'
+
 function Checkout() {
 
     const URL = 'http://localhost:8000/api/products/orders/create/'
@@ -82,13 +85,13 @@ function Checkout() {
 
 
   return (
-    <>
+    <div className="checkout-container">
         <h2>Checkout</h2>
         <div>
         <Link to={'/'}>Inicio</Link>
         </div>
         <MyForm fields= {fields} schema={checkouSchema} onSubmit={handleBuy}/>
-    </>
+    </div>
   )
 }
 
