@@ -32,7 +32,6 @@ function CartIcon({ width = 17, height = 17, color = "black"}) {
       </svg>
 
       <span className="item-count">{totalItem}</span>
-      {console.log(totalItem)}
     </div>
     
   )

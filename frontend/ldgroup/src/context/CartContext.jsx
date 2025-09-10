@@ -47,7 +47,6 @@ function CartProvider({ children }) {
 
   // 🛠️ Debug para ver qué hay en el carrito
   useEffect(() => {
-    console.log("🛒 Carrito actualizado:", cartItems);
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
