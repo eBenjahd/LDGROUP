@@ -72,6 +72,12 @@ def get_inventory(request):
     serializer = InventorySerializer(inventory)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def get_all_inventory(request):
+    inventory_qs = Inventory.objects.all()
+    serializer = InventorySerializer(inventory_qs, many = True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
 @api_view(['PATCH'])
 def update_order_item(request, pk):
     try: 
