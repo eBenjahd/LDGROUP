@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getAllInventory } from '../utils/getAllInventory';
+import { GetAllInventory } from '../utils/getAllInventory';
 
 function useInventory(products) {
   const [inventory, setInventory] = useState({});
@@ -11,14 +11,10 @@ function useInventory(products) {
 
     const fetchInventory = async () => {
       try {
-        const results = await getAllInventory()
+        const results = await GetAllInventory()
 
         if (isMounted && results) {
-          const newInventory = results.reduce((acc, { product, quantity }) => {
-            acc[product] = quantity;
-            return acc;
-          }, {});
-          setInventory(newInventory);
+          setInventory(results);
         }
       } catch (error) {
         console.error('Error fetching inventory:', error);
