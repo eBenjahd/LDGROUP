@@ -15,7 +15,6 @@ function App() {
   const links = [
     { name: 'Home', url: '/' },
     { name: 'Contact', url: '/contact' },
-    { name: 'Nuevo', url: '/nuevo' }
   ]
 
   
