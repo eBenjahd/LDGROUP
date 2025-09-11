@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #OWN APPS
-    'products',
+    'ldgroup.products',
 
     #THIRD PARTY APPS
     'rest_framework',
