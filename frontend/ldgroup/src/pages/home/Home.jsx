@@ -1,12 +1,14 @@
 import React from 'react'
 import Products from '../../components/products/Products'
-import Navbar from '../../components/nav/navbar'
+import Navbar from '../../components/nav/Navbar'
+import Footer from '../../components/footer/Footer'
 
 function Home() {
   return (
     <>
         <Navbar />
-        <Products URL={'http://localhost:8000/api/products/'} title='Nuevos esta semana'/>
+        <Products title='Nuevos esta semana'/>
+        <Footer year={2025}/>
     </>
   )
 }
