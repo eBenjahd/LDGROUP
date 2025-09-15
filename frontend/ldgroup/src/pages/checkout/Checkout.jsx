@@ -10,7 +10,7 @@ import './Checkout.scss'
 
 function Checkout() {
 
-    const URL = 'http://localhost:8000/api/products/orders/create/'
+    const URL = import.meta.env.VITE_CREATE_ORDER_URL
     const { cartItems, clearData } = useCart()
 
 
