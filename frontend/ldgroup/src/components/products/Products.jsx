@@ -7,7 +7,6 @@ import Button from './components/Button';
 function Products({URL,title}) {
 
     const {products , loading , error } = useProducts()
-    const imageUrl = 'http://localhost:8000';
 
     const inventory = useInventory(products);
 
@@ -27,13 +26,13 @@ function Products({URL,title}) {
                 product.is_active &&
                 <article className='product-cart' key={product.id}>
 
-                    {product.image ? <img src={`${imageUrl}${product.image}`} alt={product.name} /> : <p>No hay imagen</p>}
+                    {product.image ? <img src={`${product.image}`} alt={product.name} /> : <p>No hay imagen</p>}
                     <h2>{product.name}</h2>
                     <p className='price'>S/.{product.price}</p>
 
                     <Button  inventory={inventory} product = {{
                         ...product,
-                        image: product.image ? `${imageUrl}${product.image}` : null}}  
+                        image: product.image ? `${product.image}` : null}}  
                     />
                 </article>
 

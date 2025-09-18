@@ -10,8 +10,7 @@ import './SearchPortal.scss'
 function SearchPortal({ onClose }) {
   const [query, setQuery] = useState('')
   const { products, loading, error } = useProducts()
-  const inventory = useInventory(products)
-  const imageUrl = 'http://localhost:8000' 
+  const inventory = useInventory(products) 
 
   const filtered = products.filter((p) =>
     p.name.toLowerCase().includes(query.toLowerCase())
@@ -41,7 +40,7 @@ function SearchPortal({ onClose }) {
               <div key={p.id} className="search-box">
                 {p.image ? (
                   <img
-                    src={`http://localhost:8000${p.image}`}
+                    src={`${p.image}`}
                     alt={p.name}
                   />
                 ) : (
@@ -52,7 +51,7 @@ function SearchPortal({ onClose }) {
                   <p className="price">S/.{p.price}</p>
                   <Button  inventory={inventory} product = {{
                         ...p,
-                        image: p.image ? `${imageUrl}${p.image}` : null}}  
+                        image: p.image ? `${p.image}` : null}}  
                     />
                 </div>
               </div>
