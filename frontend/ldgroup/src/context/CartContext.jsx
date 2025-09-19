@@ -21,7 +21,6 @@ function CartProvider({ children }) {
 
   const addToCart = (product, quantity = 1, available = Infinity) => {
 
-    console.log(product.image)
     const existingProduct = cartItems.find(item => item.id === product.id);
 
     if (existingProduct) {

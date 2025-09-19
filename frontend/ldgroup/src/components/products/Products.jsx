@@ -4,9 +4,7 @@ import { useProducts } from '../../context/ProductsContext';
 import './Products.scss'
 import Button from './components/Button';
 
-function Products({URL,title}) {
-
-    const {products , loading , error } = useProducts()
+function Products({title,products,loading,error}) {
 
     const inventory = useInventory(products);
 
@@ -20,6 +18,7 @@ function Products({URL,title}) {
 
             {loading && <div>Loading...</div>}
             {error && <div>Error: {error.message}</div>}
+            {products?.length === 0 && <p>No hay productos disponibles</p>}
 
             {products && products.map((product)=>(
 
