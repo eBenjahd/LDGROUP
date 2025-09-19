@@ -1,8 +1,10 @@
-import ReactDOM from 'react-dom'
+import { createPortal } from 'react-dom'
 import { useState } from 'react'
 import { useProducts } from '../../context/ProductsContext'
 import useInventory from '../../hooks/useInventory'
-import Button from '../products/components/Button'
+import useDebounce from '../../hooks/useDebounce'
+import SearchHeader from './components/SearchHeader'
+import SearchResults from './components/SearchResults'
 
 // Styles
 import './SearchPortal.scss'
@@ -12,54 +14,26 @@ function SearchPortal({ onClose }) {
   const { products, loading, error } = useProducts()
   const inventory = useInventory(products) 
 
+  const debounceQuery = useDebounce(query)
+
   const filtered = products.filter((p) =>
-    p.name.toLowerCase().includes(query.toLowerCase())
+    p.name.toLowerCase().includes(debounceQuery.toLowerCase())
   )
 
-  return ReactDOM.createPortal(
+  return createPortal(
     <div className="search-portal-overlay">
       <div className="search-portal">
 
         {/* Header */}
-        <div className="search-header">
-          <input
-            type="text"
-            placeholder="Buscar productos..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button onClick={onClose}>✕</button>
-        </div>
+        <SearchHeader query={query} setQuery={setQuery} onClose={onClose}/>
 
         {/* Scrollable results */}
-        <div className="scroll">
-          {loading && <p>Cargando...</p>}
-          {error && <p>Error al cargar productos</p>}
-          {filtered.length > 0 ? (
-            filtered.map((p) => (
-              <div key={p.id} className="search-box">
-                {p.image ? (
-                  <img
-                    src={`${p.image}`}
-                    alt={p.name}
-                  />
-                ) : (
-                  <p>No hay imagen</p>
-                )}
-                <div className="search-info">
-                  <h4>{p.name}</h4>
-                  <p className="price">S/.{p.price}</p>
-                  <Button  inventory={inventory} product = {{
-                        ...p,
-                        image: p.image ? `${p.image}` : null}}  
-                    />
-                </div>
-              </div>
-            ))
-          ) : (
-            <p className="empty-search">No se encontraron resultados</p>
-          )}
-        </div>
+        <SearchResults 
+          loading={loading}
+          error={error}
+          filtered={filtered}
+          inventory={inventory}
+        />
 
         <div className="search-footer">
           <button className="search-btn" onClick={onClose}>
