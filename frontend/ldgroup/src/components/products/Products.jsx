@@ -18,7 +18,6 @@ function Products({title,products,loading,error}) {
 
             {loading && <div>Loading...</div>}
             {error && <div>Error: {error.message}</div>}
-            {products?.length === 0 && <p>No hay productos disponibles</p>}
 
             {products && products.map((product)=>(
 
