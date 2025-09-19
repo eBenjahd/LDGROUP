@@ -1,13 +1,13 @@
 import React from 'react'
-import Products from '../../components/products/Products'
 import Navbar from '../../components/nav/Navbar'
 import Footer from '../../components/footer/Footer'
+import NewProducts from '../../components/filter-products/NewProducts'
 
 function Home() {
   return (
     <>
         <Navbar />
-        <Products title='Nuevos esta semana'/>
+        <NewProducts />
         <Footer year={2025}/>
     </>
   )
