@@ -1,5 +1,4 @@
 import useInventory from '../../hooks/useInventory';
-import { useProducts } from '../../context/ProductsContext';
 
 import './Products.scss'
 import Button from './components/Button';
