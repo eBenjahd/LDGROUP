@@ -8,8 +8,10 @@ function Home() {
   return (
     <>
         <Navbar />
-        <ShowProducts />
-        <NewProducts />
+        <main>
+          <ShowProducts />
+          <NewProducts />
+        </main>
         <Footer year={2025}/>
     </>
   )

@@ -9,10 +9,10 @@ function Products({title,products,loading,error}) {
 
     return (
 
-    <main>
-        <h1>
+    <section>
+        <h2>
             {title ? title : 'Productos'}
-        </h1>
+        </h2>
         <div className='products-cart'>
 
             {loading && <div>Loading...</div>}
@@ -24,7 +24,7 @@ function Products({title,products,loading,error}) {
                 <article className='product-cart' key={product.id}>
 
                     {product.image ? <img src={`${product.image}`} alt={product.name} /> : <p>No hay imagen</p>}
-                    <h2>{product.name}</h2>
+                    <h3>{product.name}</h3>
                     <p className='price'>S/.{product.price}</p>
 
                     <Button  inventory={inventory} product = {{
@@ -36,7 +36,7 @@ function Products({title,products,loading,error}) {
             ))}
         
         </div>
-    </main>
+    </section>
   )
 }
 

@@ -125,7 +125,9 @@
       }
     }
 
-    button {
+    a {
+      display: block;
+      text-align: center;
       width: 100%;
       text-transform: capitalize;
       background-color: black;
@@ -134,11 +136,8 @@
       font-size: large;
       border-radius: 10px;
       box-sizing: border-box;
-
-      &.product-btn {
-        margin-top: 25px;
-        margin-bottom: 15px;
-      }
+      margin-top: 25px;
+      margin-bottom: 15px;
 
       &:hover {
         background-color: #333333;
