@@ -45,7 +45,7 @@ function Button({ product, inventory }) {
           <BagIcon width={14} height={14} color='white'/>
         </span>
       </div>
-      <div className="adder">
+      <div className="adder search">
         <span className='handler' onClick={remove}>-</span>
         <span>{quantity}</span>
         <span className='handler' onClick={add}>+</span>   

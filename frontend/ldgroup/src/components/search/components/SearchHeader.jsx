@@ -2,6 +2,7 @@ function SearchHeader({query, setQuery, onClose}) {
   return (
     <div className="search-header">
           <input
+            id="query"
             type="text"
             placeholder="Buscar productos..."
             value={query}
