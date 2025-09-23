@@ -24,3 +24,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+div#root {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100dvh;
+}

@@ -1,10 +1,6 @@
-// import Products from './components/products/Products';
-// import Navbar from './components/nav/navbar';
-import './App.scss'
-
 import {Routes, Route} from 'react-router-dom'
 import Home from './pages/home/Home';
-import Contact from './pages/contact/Contact';
+import FAQPage from './pages/faq/Faq';
 import Checkout from './pages/checkout/Checkout';
 
 import MenuProvider from './context/MenuContext';
@@ -14,7 +10,7 @@ function App() {
 
   const links = [
     { name: 'Home', url: '/' },
-    { name: 'Contact', url: '/contact' },
+    { name: 'FAQ', url: '/faq' },
   ]
 
   
@@ -23,7 +19,7 @@ function App() {
       <MenuProvider links={links}>
         <Routes>
           <Route path='/' element={<Home />}></Route>
-          <Route path='/contact' element={<Contact />}></Route>
+          <Route path='/faq' element={<FAQPage />}></Route>
           <Route path='/checkout' element={<Checkout />}></Route>
         </Routes>
       </MenuProvider>
