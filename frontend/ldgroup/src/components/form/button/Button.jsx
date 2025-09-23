@@ -1,9 +1,11 @@
 import './Button.scss'
 
-function Button({text, Component}) {
+function Button({text}) {
   return (
     <>
-      <button type='submit'> {text} <span> {Component} </span></button>
+      <button type='submit'> 
+        {text}
+      </button>
     </>
   )
 }

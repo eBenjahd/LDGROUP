@@ -26,7 +26,7 @@ function MyForm({fields, schema, onSubmit}) {
         />
       ))
       }
-      <Button text='Enviar' Component={<Arrow />}/>
+      <Button text='Enviar'/>
     </form>
   )
 }
