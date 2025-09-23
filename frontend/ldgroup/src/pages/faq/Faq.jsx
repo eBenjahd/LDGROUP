@@ -20,7 +20,7 @@ export default function FAQPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="faq">
         <h1>Preguntas Frecuentes</h1>
         <div className="faq-container">
           {faqs.map((faq, index) => (
